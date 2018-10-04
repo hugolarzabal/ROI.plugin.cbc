@@ -34,6 +34,15 @@ solver <- function(x, control) {
   } else {
     is_integer <- rep.int(FALSE, n_cols)
   }
+  
+  # build col bounds when there are special bounds in ROI
+  bounds <- bounds(x)
+  lb_ind <- bounds$lower$ind
+  lb_val <- bounds$lower$val
+  ub_ind <- bounds$upper$ind
+  ub_val <- bounds$upper$val
+  if (!is.null(lb_ind)){ col_lb[lb_ind] <- lb_val }
+  if (!is.null(ub_ind)){ col_ub[ub_ind] <- ub_val }
 
   # build row bounds
   constraints <- ROI::constraints(x)
