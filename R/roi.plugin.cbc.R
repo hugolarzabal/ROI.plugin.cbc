@@ -43,10 +43,7 @@ solver <- function(x, control) {
   ub_val <- bounds$upper$val
   if (!is.null(lb_ind)){ col_lb[lb_ind] <- lb_val }
   if (!is.null(ub_ind)){ col_ub[ub_ind] <- ub_val }
-  
-  warning(lb_ind)
-  warning(ub_ind)
-  
+    
   # build row bounds
   constraints <- ROI::constraints(x)
   row_dir <- constraints$dir
